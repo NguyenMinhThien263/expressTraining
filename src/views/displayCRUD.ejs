@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get CRUD</title>
+    <link content-type="text/css" rel="stylesheet" href="/css/displayCRUD.css">
     <%- include('../views/bootstrap'); %>
 </head>
 
@@ -39,7 +40,10 @@
                     <td>
                         <%= item.address %>
                     </td>
-                    <td>edit/del</td>
+                    <td>
+                        <a href="/edit-crud?id=<%= item.id %>" class="btn-edit">Edit</a>
+                        <a href="/del-crud?id=<%= item.id %>" class="btn-del">Delete</a>
+                    </td>
                 </tr>
                 <% });%>
         </tbody>

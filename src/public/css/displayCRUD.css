@@ -1,0 +1,18 @@
+.btn-edit {
+  outline: none;
+  border: none;
+  background-color: orange;
+  height: 25px;
+  width: 60px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn-del {
+  outline: none;
+  border: none;
+  background-color: red;
+  height: 25px;
+  width: 60px;
+  border-radius: 3px;
+  cursor: pointer;
+}
