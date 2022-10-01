@@ -11,8 +11,8 @@ let handleLogin = async (req, res) => {
             message: 'Missing inputs parameter!'
         })
     }
-    //Not Exists func
     let userData = await userService.handleUserLogin(email, password);
+    //Not Exists func
     return res.status(200).json({
         errCode: userData.errCode,
         message: userData.errMessage,
