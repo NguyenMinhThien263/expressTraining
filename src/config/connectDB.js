@@ -5,6 +5,7 @@ const sequelize = new Sequelize('expresstraining', 'root', null, {
     host: 'localhost',
     dialect: 'mysql',
     logging: false,
+    
 });
 
 
