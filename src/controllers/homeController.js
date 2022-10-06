@@ -38,8 +38,8 @@ let getEditCRUD = async (req, res) => {
 
 }
 let putCRUD = async (req, res) => {
-    let userId = req.params.id;
-    console.log(userId);
+    // let userId = req.params.id;
+    // console.log(userId);
     let data = req.body;
     let allUser = await CRUDService.updateUserData(data)
     return res.render('displayCRUD.ejs', {
