@@ -48,7 +48,57 @@ let getAllSpecialty = () => {
         }
     })
 }
+let getDetailSpecialtyById = (inputId, location) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!inputId || !location) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing parameter id'
+                })
+            } else {
+                let data = {}
+                if (location === 'ALL') {
+                    data = await db.Specialty.findOne({
+                        where: {
+                            id: inputId,
+                        },
+                        attributes: ['descriptionHTML', 'descriptionMarkdown'],
+                        include: [
+                            { model: db.Doctor_Infor, as: 'specialtyData', attributes: ['doctorId', 'provinceId'] },
+                        ],
+                        raw: false,
+                        nest: true
+                    });
+                } else {
+                    data = await db.Specialty.findOne({
+                        where: {
+                            id: inputId,
+                        },
+                        attributes: ['descriptionHTML', 'descriptionMarkdown'],
+                        include: [
+                            { model: db.Doctor_Infor, where: { provinceId: location }, as: 'specialtyData', attributes: ['doctorId', 'provinceId'] },
+                        ],
+                        raw: false,
+                        nest: true
+                    });
+                }
+                if (!data) {
+                    data = {}
+                }
+                resolve({
+                    errCode: 0,
+                    errMessage: 'OK',
+                    data
+                })
+            }
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 module.exports = {
     createSpecialty: createSpecialty,
     getAllSpecialty: getAllSpecialty,
+    getDetailSpecialtyById: getDetailSpecialtyById,
 }
