@@ -15,6 +15,8 @@ let postBookingAppointment = (inputData) => {
                 || !inputData.timeType
                 || !inputData.date
                 || !inputData.fullName
+                || !inputData.selectedGender
+                || !inputData.address
             ) {
                 resolve({
                     errCode: 1,
@@ -35,6 +37,9 @@ let postBookingAppointment = (inputData) => {
                     where: { email: inputData.email },
                     defaults: {
                         email: inputData.email,
+                        firstName: inputData.fullName,
+                        gender: inputData.selectedGender,
+                        address: inputData.address,
                         roleId: 'R3',
                     }
                 });
